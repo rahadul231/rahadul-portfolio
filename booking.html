@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Request a meeting | Md. Rahadul Islam</title><link rel="icon" href="./favicon.png"><style>
+*{box-sizing:border-box}body{margin:0;background:#081a33;color:#f5f7fc;font:16px/1.65 system-ui,sans-serif}main{width:min(650px,calc(100% - 32px));margin:48px auto}a{color:#b9dafb}h1{font-size:clamp(2rem,6vw,3rem);line-height:1.15}form{background:#152d4a;padding:clamp(16px,4vw,28px);border-radius:12px;border:1px solid #38516c}label{display:block;font-weight:600;margin:14px 0 4px}input,textarea{display:block;width:100%;min-width:0;padding:11px;border:1px solid #7890aa;background:#0b2039;color:#f5f7fc;border-radius:6px;font:inherit;color-scheme:dark}button{margin-top:18px;padding:12px 16px;background:#a6d9ff;border:0;border-radius:6px;color:#081a33;font:inherit;font-weight:700;cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #a6d9ff;outline-offset:3px}.note{color:#c2d0e1;font-size:.92rem}
+</style></head><body><main><a href="./index.html">← Back to portfolio</a><h1>Request a meeting</h1><p>Interested in research, AI/ML projects, internships or collaboration? Suggest a time for a short conversation.</p><form id="request"><label for="name">Your name</label><input id="name" required maxlength="80" autocomplete="name"><label for="date">Preferred date (Bangladesh time)</label><input id="date" type="date" required><label for="time">Preferred time (UTC+6)</label><input id="time" type="time" required><label for="topic">Meeting topic</label><textarea id="topic" rows="3" required maxlength="500"></textarea><button type="submit">Continue to WhatsApp</button><p class="note">This opens a WhatsApp message for you to review and send. Your meeting is not confirmed until I reply. No information is stored by this website.</p></form><p class="note">Alternatively, <a href="https://wa.me/8801883370975?text=Hello%2C%20I%20would%20like%20to%20request%20a%20meeting.">message me directly on WhatsApp</a>.</p></main>
+<script>
+const form=document.getElementById('request');
+form.addEventListener('submit', function(event){
+ event.preventDefault();
+ const name=document.getElementById('name').value.trim();
+ const date=document.getElementById('date').value;
+ const time=document.getElementById('time').value;
+ const topic=document.getElementById('topic').value.trim();
+ if(!name||!topic){alert('Please enter your name and meeting topic.');return;}
+ if(new Date(date+'T'+time+':00+06:00').getTime()<=Date.now()){alert('Please select a future date and time in Bangladesh.');return;}
+ const message='Hello Rahadul, I would like to request a meeting.\nName: '+name+'\nPreferred date: '+date+'\nPreferred time: '+time+' (Bangladesh, UTC+6)\nTopic: '+topic+'\nPlease let me know if you are available.';
+ window.location.href='https://wa.me/8801883370975?text='+encodeURIComponent(message);
+});
+</script></body></html>
